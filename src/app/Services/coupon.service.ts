@@ -18,6 +18,6 @@ export class CouponService {
     return this.http.post<any>(`http://localhost:58884/api/coupon`,coupon)
   }
   deletecoupon(couponId:any):Observable<any>{
-    return this.http.delete<any>(`http://localhost:58884/api/coupon?CouponId=`,couponId)
+    return this.http.delete<any>(`http://localhost:58884/api/coupon?CouponId=${couponId}`)
 }
 }

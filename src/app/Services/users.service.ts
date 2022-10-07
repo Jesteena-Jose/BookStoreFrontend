@@ -17,6 +17,9 @@ export class UsersService {
   updateUser(UserId: any, user: any): Observable<any> {
     return this.http.put<any>(`http://localhost:58884/api/user?UserId=${UserId}`,user)
   }
+  updatestatus(status:any): Observable<any> {
+    return this.http.post<any>(`http://localhost:58884/api/statuschange`,status)
+  }
   login(data:any): Observable<any> {
     console.log(data)
     return this.http.post<any>(`http://localhost:58884/api/login`,data)

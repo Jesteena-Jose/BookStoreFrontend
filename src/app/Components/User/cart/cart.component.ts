@@ -47,7 +47,13 @@ export class CartComponent implements OnInit {
   }
 
   placeorder(){
+    console.log(this.user.ActiveStatus)
+    if(this.user.ActiveStatus=="Active"){
     this.router.navigateByUrl("Placeorder")
+    }
+    else{
+      alert("You are currently deactivated by admin")
+    }
   }
 
 }

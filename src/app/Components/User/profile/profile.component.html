@@ -26,20 +26,32 @@
         </div>
         <div class="col-lg-1"></div>
         <div class="col-lg-7">
-            <form>
+            <form [formGroup]="UpdateForm" (submit)="handleUpdate()">
                 <div class="form-group">
-                    <label for="Name">Name</label>
-                    <input type="text" class="form-control" id="Name">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" formControlName="Name" [class.is-invalid]="Name?.invalid && Name?.touched">
+                    <div *ngIf="Name?.errors && Name?.touched">
+                        <small class="text-danger" *ngIf="Name?.errors?.['required']">Name is required</small>
+                        <small class="text-danger" *ngIf="Name?.errors?.['minlength']">Name is not valid</small>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="Email">Email address</label>
-                    <input type="email" class="form-control" id="Email">
-                </div>
-                <div class="form-group">
-                    <label for="Phone">Phone Number</label>
-                    <input type="number" class="form-control" id="Phone">
-                </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" formControlName="Email" [class.is-invalid]="Email?.invalid && Email?.touched">
+                        <div *ngIf="Email?.errors && Email?.touched">
+                            <small class="text-danger" *ngIf="Email?.errors?.['required']">Email is required</small>
+                            <small class="text-danger" *ngIf="Email?.errors?.['email']">Email is not valid</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Phone">Phone Number</label>
+                      <input type="number" class="form-control" formControlName="PhoneNo" [class.is-invalid]="PhoneNo?.invalid && PhoneNo?.touched">
+                      <div *ngIf="PhoneNo?.errors && PhoneNo?.touched">
+                          <small class="text-danger" *ngIf="PhoneNo?.errors?.['required']">Phone is required</small>
+                          <small class="text-danger" *ngIf="PhoneNo?.errors?.['pattern']">Please, Enter 10 digit Mobile Number.</small>
+                      </div>
+                  </div>
+                <button type="submit" class="btn btn-primary" [disabled]="UpdateForm.invalid">Update</button>
             </form>
             <br><br>
             <div>

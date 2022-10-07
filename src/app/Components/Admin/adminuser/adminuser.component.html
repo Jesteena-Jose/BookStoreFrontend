@@ -28,8 +28,8 @@
               </svg>{{user.PhoneNo}}</td>
             <td>{{user.ActiveStatus}}</td>
             <td>
-                <button class="btn btn-success mr-sm-2">Activate</button>
-                <button class="btn btn-danger">Deactivate</button>
+                <button class="btn btn-success mr-sm-2" (click)="handlestatus(user.UserId,'Active')">Activate</button>
+                <button class="btn btn-danger" (click)="handlestatus(user.UserId,'Deactive')">Deactivate</button>
             </td>
           </tr>
         </tbody>
