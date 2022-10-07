@@ -1,0 +1,26 @@
+<app-adminnavbar></app-adminnavbar>
+
+<div class="container"><br>
+    <h3 class="text-center color">Coupons</h3>
+    <button class="btn btn-primary float-right" routerLink="/Admincoupon">
+        Add Coupons
+    </button><br><br><br>
+    <table class="table table table-striped">
+        <thead class="table-warning">
+          <tr>
+            <th scope="col">Coupon Id</th>
+            <th scope="col">Coupon Code</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Discount Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let coupon of coupons">
+            <th scope="row">{{coupon.CouponId}}</th>
+            <td>{{coupon.CouponCode}}</td>
+            <td>{{coupon.UserId}}</td>
+            <td>{{coupon.DiscountAmount}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

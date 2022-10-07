@@ -1,0 +1,25 @@
+
+.coupon {
+    float: left;
+    width: 50%;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+img {
+    margin: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+.wrapper {
+    margin-top: 100px;
+    padding: 0px !important;
+    border-radius: 15px;
+}
+
+h5{
+    padding: 20px;
+    padding-bottom: 0px;
+}

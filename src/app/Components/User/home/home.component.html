@@ -1,0 +1,96 @@
+<div class="bodywrapper">
+
+  <app-navbar></app-navbar>
+
+  <div class="jumbotron">
+    <h3>Hello,</h3>
+    <p class="wrapper">"Read a lot. Expect something big, something exalting or deepening from a book.<br> No book is
+      worth reading that isn't worth re-reading." <span class="namewrapper"> Susan Sontag</span></p>
+    <hr class="my-4">
+    <p>From ficton to nonfiction, we have a lot of books to offer you. Get your favourite books from here!</p>
+    <button class="btn rounded-pill buttonview" routerLink="/Books">See more books</button>
+  </div>
+
+
+
+  <!-- =========================================category===================================================== -->
+
+  <div>
+    <button class="float-left btncategory" (click)="scrollLeft()"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+        height="25" fill="grey" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+      </svg></button>
+    <div #widgetsContent class="middle">
+      <div class="info-widget" *ngFor="let category of categories">
+        <img src="{{imageurl+category.Image}}" alt="">
+        <p class="text-center">{{category.CategoryName}}</p>
+      </div>
+    </div>
+    <button class="float-right btncategory" (click)="scrollRight()"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+        height="25" fill="grey" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+      </svg></button>
+  </div>
+
+  <br><br><br>
+  <!-- ======================================search========================================================== -->
+
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-2"><input type="text" class="form-control" id="Title" placeholder="Title" [(ngModel)]="title"></div>
+      <div class="col-lg-2">
+        <!-- <input type="text" class="form-control" id="Category" placeholder="Category"> -->
+        <select id="category" class="form-control" [(ngModel)]="cat">
+          <option *ngFor="let category of categories" value="{{category.CategoryId}}">{{category.CategoryName}}</option>
+      </select>
+      </div>
+      <div class="col-lg-2"><input type="text" class="form-control" id="ISBN" placeholder="ISBN" [(ngModel)]="isbn"></div>
+      <div class="col-lg-2"><input type="text" class="form-control" id="Author" placeholder="Author" [(ngModel)]="author"></div>
+      <div class="col-lg-2">
+        <button class="btn btn-dark rounded-pill" (click)="Search()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg> Find book
+        </button>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+
+    <br><br>
+    <div class="row row-cols-1 row-cols-md-3 justify-content-center">
+      <div class="col mb-4" *ngFor="let book of books">
+        <div class="card h-100">
+          <img src="{{imageurl+book.Image}}" class="card-img-top cardimage" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{book.Title}}</h5>
+            <h6>{{book.Author}}</h6>
+            <p>{{book.Price}}</p>
+            <p class="card-text">{{book.Description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ==============================best books========================== -->
+  <div class="footer">
+    <h2 class="text-center">Best Seller Books</h2><br>
+    <div class="row row-cols-1 row-cols-md-5 justify-content-center">
+      <div class="col mb-4" *ngFor="let bestbook of bestbooks">
+        <div class="card h-100">
+          <img src="{{imageurl+bestbook.Image}}" class="card-img-top cardimage" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{bestbook.Title}}</h5>
+            <h6>{{bestbook.Author}}</h6>
+            <p>{{bestbook.Price}}</p>
+            <p class="card-text">{{bestbook.Description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

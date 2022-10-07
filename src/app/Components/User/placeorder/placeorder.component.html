@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <br>
+    <h3 class="text-center usercolor">Place Order</h3>
+    <br>
+    <div>
+        <div class="border" *ngFor="let book of books">
+            <div class="media product">
+                <img src="{{imageurl+book.book.Image}}" class="align-self-start mr-3" alt="..."
+                    height="100px" width="100px" routerLink="/Bookdetail" style="cursor:pointer;">
+                <div class="media-body">
+                    <h5 class="mt-0">{{book.book.Title}}</h5>
+                    <h6>{{book.book.Author}}</h6>
+                    <h6><strong>Price : </strong><span class="badge badge-pill badge-success"
+                            style="font-size:15px;margin: 10px;">{{book.book.Price}} </span> 
+                            <!-- <small><del>{{300|currency:'INR'}}</del></small> -->
+                        </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <h5>Deliver to</h5><br>
+            <select class="form-control" [(ngModel)]="addressId">
+                <option *ngFor="let address of addresses" value="{{address.AddressId}}">{{address.HouseNo}},{{address.City}},{{address.State}},{{address.Country}},{{address.Pincode}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+
+    <br><br>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class=" col-lg-8 ">
+            <h5>Price Details</h5>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <p>Price</p>
+                </div>
+                <div class="col-lg-3">
+                    <p>{{sum}}</p>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <p>Discount</p>
+                </div>
+                <div class="col-lg-3">
+                    <p>-0</p>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <p><strong>Total Price</strong></p>
+                </div>
+                <div class="col-lg-3">
+                    <p><strong>{{sum}}</strong></p>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div><br>
+    <!-- <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <h5>Do you want to use the coupon?</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                    value="option1">
+                <label class="form-check-label" for="inlineRadio1">10% off</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                    value="option2">
+                <label class="form-check-label" for="inlineRadio2">20% off</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                    value="option3">
+                <label class="form-check-label" for="inlineRadio3">30% off</label>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div><br><br> -->
+    <h3 class="text-center usercolor">The net amount that have to pay is
+        <span class="badge badge-pill badge-success" style="font-size:20px;margin: 10px;">{{sum}} </span>
+     </h3>
+
+     <button class="btn btn-primary" (click)="placeorder()" >Confirm Order</button>
+     <br><br>
+</div>

@@ -1,0 +1,40 @@
+
+.wrapper {
+    margin-top: 100px;
+    padding: 0px !important;
+    border-radius: 15px;
+}
+
+.alertwrapper{
+   margin: 5px;
+}
+
+.container {
+    font-family: 'Times New Roman', serif;
+}
+
+form {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+img {
+    margin: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+.login {
+    float: left;
+    width: 50%;
+}
+
+.btncolor{
+    background-color: blueviolet;
+    color: white;
+}

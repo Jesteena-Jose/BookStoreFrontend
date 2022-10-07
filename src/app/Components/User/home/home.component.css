@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+
+
+.bodywrapper{
+    overflow-x: hidden;
+}
+.wrapper {
+    padding: 20px;
+    padding-bottom: 0px;
+    font-family: 'Tangerine', cursive;
+    font-size: 50px;
+}
+
+.namewrapper {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.buttonview {
+    background-color: rgb(157, 0, 255);
+    color: white;
+}
+
+.cardimage {
+    height: 200px;
+}
+
+.footer {
+    background-color: rgb(242, 245, 248);
+    padding:50px 0px;
+}
+
+
+/* =========category============== */
+.info-widget {
+    display: inline-block;
+
+}
+
+.middle {
+    float: left;
+    width: 92.7%;
+    overflow: auto;
+    /*will change this to hidden later to deny scolling to user*/
+    white-space: nowrap;
+    margin-left: 50px;
+    box-sizing: border-box;
+}
+
+.middle::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.info-widget img {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.btncategory{
+    margin-top: 100px;
+    position: absolute;
+    border: none;
+    background-color: white;
+}

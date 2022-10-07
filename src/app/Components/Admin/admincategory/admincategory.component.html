@@ -1,0 +1,116 @@
+<app-adminnavbar></app-adminnavbar>
+<div class="container">
+    <br>
+    <h3 class="text-center color">Categories</h3>
+    <div>
+        <a class="btn btn-primary float-right" fragment="addcategory" (click)="navigateToSection('addcategory',0)"
+            target="_self">Add Category
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-plus-circle"
+                viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+            </svg>
+        </a>
+    </div>
+    <div class="wrapper">
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-4" *ngFor="let category of categories">
+                <div class="card h-100">
+                    <img src="{{imageurl+category.Image}}" class="card-img-top" alt="..." height="200px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{category.CategoryName}}</h5>
+                        <p class="card-text">{{category.Description}}</p>
+                        <p><strong>Status : </strong>{{category.Status}}</p>
+                        <p><strong>Position : </strong>{{category.Position}}</p>
+                        <p><strong>Created At : </strong>{{category.CreatedAt}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a fragment="editcategory" (click)="navigateToSection('editcategory',category.CategoryId)"
+                            type="button" class="btn btn-success btn-md float-left">Edit</a>
+                        <button type="button" class="btn btn-danger btn-md float-right"
+                            (click)="deleteCategory(category.CategoryId)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- --------Popup Add-------- -->
+<div id="addcategory" class="overlay">
+    <div class="popup">
+        <h2>Add Category</h2>
+        <a class="close" (click)="navigateToSection('',0)">&times;</a>
+        <div class="content">
+            <form [formGroup]="CategoryForm" (submit)="onFormAdd()">
+                <div class="form-group">
+                    <label for="CategoryName">Category Name</label>
+                    <input type="text" class="form-control" id="categoryName" formControlName="categoryName">
+                </div>
+                <div class="form-group">
+                    <label for="Image">Image Url</label>
+                    <input type="text" class="form-control" id="image" formControlName="image">
+                </div>
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <select id="status" class="form-control" formControlName="status">
+                        <option selected>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Position">Position</label>
+                    <input type="text" class="form-control" id="position" formControlName="position">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="description" formControlName="description"></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mr-sm-2">Save</button>
+                    <a (click)="navigateToSection('',0)" class="btn btn-secondary my-2 my-sm-0">Close</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- --------Popup Edit-------- -->
+<div id="editcategory" class="overlay">
+    <div class="popup">
+        <h2 >Edit Category</h2>
+        <a class="close" (click)="navigateToSection('',0)">&times;</a>
+        <div class="content">
+            <form [formGroup]="CategoryForm" (submit)="onFormEdit(CatId)">
+                <div class="form-group">
+                    <label for="CategoryName">Category Name</label>
+                    <input type="text" class="form-control" id="categoryName" formControlName="categoryName">
+                </div>
+                <div class="form-group">
+                    <label for="Image">Image Url</label>
+                    <input type="text" class="form-control" id="image" formControlName="image">
+                </div>
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <select id="status" class="form-control" formControlName="status">
+                        <option selected>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Position">Position</label>
+                    <input type="text" class="form-control" id="position" formControlName="position">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="description" formControlName="description"></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mr-sm-2">Save</button>
+                    <a (click)="navigateToSection('',0)" class="btn btn-secondary my-2 my-sm-0">Close</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

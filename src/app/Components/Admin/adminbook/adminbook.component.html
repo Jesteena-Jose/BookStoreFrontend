@@ -1,0 +1,223 @@
+<app-adminnavbar></app-adminnavbar>
+
+<div class="wrapper">
+    <br>
+    <h3 class="text-center color">Books</h3>
+    <div>
+        <a class="btn btn-primary float-right" fragment="addbook" (click)="navigateToSection('addbook',0)">Add New Book
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-plus-circle"
+                viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+            </svg>
+        </a>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-lg-3">
+            <ul class="list-group" *ngFor="let category of categories" >
+                <li class="list-group-item d-flex justify-content-between align-items-center border border-warning lihover" (click)="getCategoryBooks(category.CategoryId)">
+                    {{category.CategoryName}}
+                    <!-- <span class="badge badge-primary badge-pill">14</span> -->
+                </li>
+            </ul>
+            <br>
+        </div>
+        <div class="col-lg-9">
+            <hr>
+            <ul class="list-unstyled" *ngFor="let book of books">
+                <li class="media">
+                    <img src="{{imageurl+book.Image}}" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <button class="btn float-right border-warning rounded-sm btnheight" type="button"
+                            data-toggle="collapse" [attr.data-target]="'#some' + book.BookId" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-three-dots-vertical" viewBox="8 0 13 16">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg>
+                        </button>
+                        <h5 class="mt-0 mb-1"><strong>{{book.Title}}</strong></h5>
+                        <div class="row">
+                            <div class="col-lg-3"><strong>Author Name</strong> : {{book.Author}}</div>
+                            <div class="col-lg-3"><strong>Price</strong> : {{book.Price}}</div>
+                            <div class="col-lg-3"><strong>ISBN</strong> : {{book.ISBN}}</div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                        <br>
+                        <div id="{{'some'+book.BookId}}" class="collapse">
+                            <p><strong>Description</strong> : {{book.Description}}
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-3"><strong>Year</strong> : {{book.Year}}</div>
+                                <div class="col-lg-3"><strong>Position</strong> : {{book.Positon}}</div>
+                                <div class="col-lg-3"><strong>Status</strong> : {{book.Status}}</div>
+                            </div>
+                            <div class="d-flex justify-content-end wrapper">
+                                <a fragment="editbook" (click)="navigateToSection('editbook',book.BookId)" class="btn btn-success mr-sm-2">Edit</a>
+                                <button class="btn btn-danger  my-2 my-sm-0" (click)="deleteBook(book.BookId)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <hr>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- --------Popup Add-------- -->
+<div id="addbook" class="overlay">
+    <div class="popup">
+        <h2>Add Book</h2>
+        <a class="close" (click)="navigateToSection('',0)">&times;</a>
+        <div class="content">
+            <form [formGroup]="BookForm" (submit)="onFormAdd()">
+                <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" id="title" formControlName="Title">
+                </div>
+                <div class="form-group">
+                    <label for="Image">Image Url</label>
+                    <input type="text" class="form-control" id="image" formControlName="Image">
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Author">Author</label>
+                            <input type="text" class="form-control" id="author" formControlName="Author">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <select id="category" class="form-control" formControlName="CategoryId" >
+                                <option *ngFor="let category of categories" value="{{category.CategoryId}}">{{category.CategoryName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Price">Price</label>
+                            <input type="number" class="form-control" id="price" formControlName="Price">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="ISBN">ISBN</label>
+                            <input type="text" class="form-control" id="isbn" formControlName="ISBN">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Year">Year</label>
+                            <input type="number" class="form-control" id="year" formControlName="Year">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Status">Status</label>
+                            <select id="status" class="form-control" formControlName="Status">
+                                <option value="1" selected>True</option>
+                                <option value="0">False</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Position">Position</label>
+                    <input type="text" class="form-control" id="position" formControlName="Position">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="description" formControlName="Description"></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary mr-sm-2">Save</button>
+                    <a (click)="navigateToSection('',0)" class="btn btn-secondary my-2 my-sm-0">Close</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- --------Popup Edit-------- -->
+<div id="editbook" class="overlay">
+    <div class="popup">
+        <h2>Edit Book</h2>
+        <a class="close" (click)="navigateToSection('',0)">&times;</a>
+        <div class="content">
+            <form [formGroup]="BookForm" (submit)="onFormEdit(EditBookId)">
+                <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" id="title" formControlName="Title">
+                </div>
+                <div class="form-group">
+                    <label for="Image">Image Url</label>
+                    <input type="text" class="form-control" id="image" formControlName="Image">
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Author">Author</label>
+                            <input type="text" class="form-control" id="author" formControlName="Author">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <select id="category" class="form-control" formControlName="CategoryId" >
+                                <option *ngFor="let category of categories" value="{{category.CategoryId}}">{{category.CategoryName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Price">Price</label>
+                            <input type="number" class="form-control" id="price" formControlName="Price">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="ISBN">ISBN</label>
+                            <input type="text" class="form-control" id="isbn" formControlName="ISBN">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Year">Year</label>
+                            <input type="number" class="form-control" id="year" formControlName="Year">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Status">Status</label>
+                            <select id="status" class="form-control" formControlName="Status">
+                                <option selected>True</option>
+                                <option>False</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Position">Position</label>
+                    <input type="text" class="form-control" id="position" formControlName="Position">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="description" formControlName="Description"></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary mr-sm-2">Save</button>
+                    <a (click)="navigateToSection('',0)" class="btn btn-secondary my-2 my-sm-0">Close</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
